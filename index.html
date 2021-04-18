@@ -118,8 +118,8 @@
 				if (originalChecksum !== validateChecksum.slice(0, 8)) throw TypeError('Inputted private key is not valid');
 
 				const hexPrivateKey = decimalToHex(decimalPrivateKey, compressed);
-				const prefixedHexPrivateKey = '80' + hexPrivateKey;
-				const compressedPrefixedHexPrivateKey = '80' + hexPrivateKey + '01';
+				const prefixedHexPrivateKey = '9E' + hexPrivateKey;
+				const compressedPrefixedHexPrivateKey = '9E' + hexPrivateKey + '01';
 
 				const digest = await getDigestFromKey(prefixedHexPrivateKey);
 				const checksum = digest.slice(0, 8);
@@ -131,9 +131,9 @@
 				const compressedConverted = hexToDecimal(compressedPrefixedHexPrivateKey + compressedChecksum);
 				const compressedConvertedPrivateKey = decimalToWif(compressedConverted);
 
-				if (convertedPrivateKey[0] !== '5' || !['K', 'L'].includes(compressedConvertedPrivateKey[0])) {
-					throw TypeError('Inputted private key is not valid')
-				}
+				// if (convertedPrivateKey[0] !== '5' || !['K', 'L'].includes(compressedConvertedPrivateKey[0])) {
+				// 	throw TypeError('Inputted private key is not valid')
+				// }
 
 				return [convertedPrivateKey, compressedConvertedPrivateKey];
 			}
